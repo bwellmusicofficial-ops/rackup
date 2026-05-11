@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — Rack Up</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 24px;
+      border-bottom: 1px solid #1a1a1a;
+      position: sticky;
+      top: 0;
+      background: #0a0a0a;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #f5f5f5 0%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-email {
+      font-size: 13px;
+      color: #666;
+    }
+
+    .nav-signout {
+      font-size: 13px;
+      color: #888;
+      background: none;
+      border: 1px solid #2a2a2a;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      font-family: inherit;
+    }
+
+    .nav-signout:hover { border-color: #555; color: #f5f5f5; }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 32px 24px 80px 24px;
+    }
+
+    /* GREETING */
+    .greeting {
+      margin-bottom: 32px;
+    }
+
+    .greeting h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .greeting p {
+      font-size: 15px;
+      color: #888;
+    }
+
+    /* LOG A PB CARD */
+    .card {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ff7a3d;
+      margin-bottom: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .field select,
+    .field input {
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid #2a2a2a;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.15s;
+      font-family: inherit;
+      width: 100%;
+    }
+
+    .field select:focus,
+    .field input:focus { border-color: #ff7a3d; }
+
+    .field select option { background: #161616; }
+
+    .log-btn {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 8px;
+      border: none;
+      background: #ff7a3d;
+      color: #0a0a0a;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s, transform 0.05s;
+      margin-top: 4px;
+      font-family: inherit;
+    }
+
+    .log-btn:hover:not(:disabled) { opacity: 0.9; }
+    .log-btn:active:not(:disabled) { transform: scale(0.98); }
+    .log-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .form-message {
+      font-size: 13px;
+      margin-top: 10px;
+      min-height: 18px;
+      text-align: center;
+    }
+
+    .form-message.success { color: #4ade80; }
+    .form-message.error { color: #ef4444; }
+
+    /* PB LIST */
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #888;
+      margin-bottom: 12px;
+    }
+
+    .pb-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pb-item {
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 10px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pb-left {}
+
+    .pb-lift {
+      font-size: 13px;
+      font-weight: 600;
+      color: #ff7a3d;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .pb-weight {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .pb-right {
+      text-align: right;
+    }
+
+    .pb-date {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .pb-bw {
+      font-size: 12px;
+      color: #555;
+      margin-top: 2px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #555;
+      font-size: 14px;
+      background: #111;
+      border: 1px solid #1e1e1e;
+      border-radius: 14px;
+    }
+
+    .empty-state .empty-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #555;
+      font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+      .nav-email { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Rack Up</div>
+    <div class="nav-right">
+      <span class="nav-email" id="nav-email"></span>
+      <button class="nav-signout" id="signout-btn">Sign out</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="greeting">
+      <h1 id="greeting-text">Welcome back.</h1>
+      <p>Log your PBs and see how you stack up.</p>
+    </div>
+
+    <!-- LOG A PB -->
+    <div class="card">
+      <div class="card-title">Log a PB</div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="lift-type">Lift</label>
+          <select id="lift-type">
+            <option value="bench">Bench Press</option>
+            <option value="squat">Squat</option>
+            <option value="deadlift">Deadlift</option>
+            <option value="ohp">Overhead Press</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="weight">Weight (kg)</label>
+          <input type="number" id="weight" placeholder="e.g. 100" min="1" max="999" step="0.5">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="bodyweight">Your bodyweight (kg)</label>
+          <input type="number" id="bodyweight" placeholder="e.g. 80" min="30" max="300" step="0.5">
+        </div>
+        <div class="field">
+          <label for="lift-date">Date</label>
+          <input type="date" id="lift-date">
+        </div>
+      </div>
+
+      <button class="log-btn" id="log-btn">Log this PB</button>
+      <div class="form-message" id="form-message"></div>
+    </div>
+
+    <!-- YOUR PBS -->
+    <div class="section-title">Your PBs</div>
+    <div class="pb-list" id="pb-list">
+      <div class="loading">Loading your lifts...</div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const SUPABASE_URL = 'https://cicgsscaoquecwhegsrb.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_yqYCJitzPATD_Wmjt40oTA_dbDeNYe_';
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const liftLabels = {
+      bench: 'Bench Press',
+      squat: 'Squat',
+      deadlift: 'Deadlift',
+      ohp: 'Overhead Press'
+    };
+
+    // Check auth
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      window.location.href = '/login.html';
+    }
+
+    // Set nav email
+    document.getElementById('nav-email').textContent = user.email;
+
+    // Set greeting
+    const hour = new Date().getHours();
+    const greeting = hour < 12 ? 'Good morning.' : hour < 18 ? 'Good afternoon.' : 'Good evening.';
+    document.getElementById('greeting-text').textContent = greeting;
+
+    // Set today's date as default
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('lift-date').value = today;
+
+    // Sign out
+    document.getElementById('signout-btn').addEventListener('click', async () => {
+      await supabase.auth.signOut();
+      window.location.href = '/';
+    });
+
+    // Load PBs
+    async function loadLifts() {
+      const { data: lifts, error } = await supabase
+        .from('lifts')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('lift_date', { ascending: false });
+
+      const pbList = document.getElementById('pb-list');
+
+      if (error || !lifts || lifts.length === 0) {
+        pbList.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">🏋️</div>
+            No PBs logged yet. Log your first one above.
+          </div>
+        `;
+        return;
+      }
+
+      pbList.innerHTML = lifts.map(lift => `
+        <div class="pb-item">
+          <div class="pb-left">
+            <div class="pb-lift">${liftLabels[lift.lift_type] || lift.lift_type}</div>
+            <div class="pb-weight">${lift.weight_kg} kg</div>
+          </div>
+          <div class="pb-right">
+            <div class="pb-date">${new Date(lift.lift_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
+            ${lift.bodyweight_at_lift_kg ? `<div class="pb-bw">BW: ${lift.bodyweight_at_lift_kg} kg</div>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    await loadLifts();
+
+    // Log a PB
+    document.getElementById('log-btn').addEventListener('click', async () => {
+      const liftType = document.getElementById('lift-type').value;
+      const weight = parseFloat(document.getElementById('weight').value);
+      const bodyweight = parseFloat(document.getElementById('bodyweight').value);
+      const liftDate = document.getElementById('lift-date').value;
+      const logBtn = document.getElementById('log-btn');
+      const formMessage = document.getElementById('form-message');
+
+      // Validation
+      if (!weight || weight <= 0) {
+        formMessage.textContent = 'Please enter a valid weight.';
+        formMessage.className = 'form-message error';
+        return;
+      }
+
+      if (!liftDate) {
+        formMessage.textContent = 'Please select a date.';
+        formMessage.className = 'form-message error';
+        return;
+      }
+
+      logBtn.disabled = true;
+      logBtn.textContent = 'Logging...';
+      formMessage.textContent = '';
+      formMessage.className = 'form-message';
+
+      try {
+        const { error } = await supabase
+          .from('lifts')
+          .insert([{
+            user_id: user.id,
+            lift_type: liftType,
+            weight_kg: weight,
+            bodyweight_at_lift_kg: bodyweight || null,
+            lift_date: liftDate
+          }]);
+
+        if (error) throw error;
+
+        formMessage.textContent = `${liftLabels[liftType]} PB logged. Nice work.`;
+        formMessage.className = 'form-message success';
+
+        // Clear weight field (keep lift type and date)
+        document.getElementById('weight').value = '';
+        document.getElementById('bodyweight').value = '';
+
+        // Reload the PB list
+        await loadLifts();
+
+      } catch (err) {
+        console.error(err);
+        formMessage.textContent = 'Something went wrong. Try again.';
+        formMessage.className = 'form-message error';
+      } finally {
+        logBtn.disabled = false;
+        logBtn.textContent = 'Log this PB';
+      }
+    });
+  </script>
+
+</body>
+</html>

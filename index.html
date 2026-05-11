@@ -174,7 +174,7 @@
       <div class="feature"><div class="dot"></div><div>Track friends, log PBs, and watch your progress over time.</div></div>
     </div>
 
-    <div class="footer">© 2026 Rack Up · Built in the UK</div>
+    <div class="footer">© 2026 Rack Up · Built in the UK · <a href="/signup.html" style="color:#ff7a3d;text-decoration:none;">Create account</a> · <a href="/login.html" style="color:#888;text-decoration:none;">Log in</a></div>
   </main>
 
   <script type="module">
@@ -184,6 +184,12 @@
     const SUPABASE_KEY = 'sb_publishable_yqYCJitzPATD_Wmjt40oTA_dbDeNYe_';
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // If already logged in, go straight to dashboard
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      window.location.href = '/dashboard.html';
+    }
 
     const form = document.getElementById('waitlist-form');
     const emailInput = document.getElementById('email');
