@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome — Rack Up</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 32px;
+      background: linear-gradient(135deg, #f5f5f5 0%, #888 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .tick {
+      width: 64px;
+      height: 64px;
+      background: #ff7a3d;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px auto;
+      font-size: 32px;
+      color: #0a0a0a;
+      font-weight: 900;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .subhead {
+      font-size: 16px;
+      color: #aaa;
+      margin-bottom: 32px;
+    }
+
+    .next-up {
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .next-up-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #ff7a3d;
+      margin-bottom: 8px;
+    }
+
+    .next-up-text {
+      font-size: 14px;
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    .email-display {
+      font-size: 14px;
+      color: #888;
+      margin-bottom: 24px;
+    }
+
+    .email-display strong {
+      color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="container">
+    <div class="logo">Rack Up</div>
+
+    <div class="tick">✓</div>
+
+    <h1>You're in.</h1>
+    <p class="subhead">Welcome to Rack Up. Account created successfully.</p>
+
+    <div class="email-display" id="email-display"></div>
+
+    <div class="next-up">
+      <div class="next-up-label">What's next</div>
+      <div class="next-up-text">
+        We're still building out the full product. PB logging, comparisons and leaderboards are coming soon. You'll be one of the first in when they go live.
+      </div>
+    </div>
+  </main>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const SUPABASE_URL = 'https://cicgsscaoquecwhegsrb.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_yqYCJitzPATD_Wmjt40oTA_dbDeNYe_';
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // Check the user is actually logged in and show their email
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (user) {
+      document.getElementById('email-display').innerHTML =
+        `Logged in as <strong>${user.email}</strong>`;
+    } else {
+      // Not logged in, redirect to signup
+      window.location.href = '/signup.html';
+    }
+  </script>
+
+</body>
+</html>
