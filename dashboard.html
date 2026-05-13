@@ -16,7 +16,6 @@
       line-height: 1.5;
     }
 
-    /* NAV */
     nav {
       display: flex;
       align-items: center;
@@ -39,16 +38,8 @@
       background-clip: text;
     }
 
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .nav-email {
-      font-size: 13px;
-      color: #666;
-    }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-email { font-size: 13px; color: #666; }
 
     .nav-signout {
       font-size: 13px;
@@ -64,31 +55,16 @@
 
     .nav-signout:hover { border-color: #555; color: #f5f5f5; }
 
-    /* MAIN LAYOUT */
     main {
       max-width: 680px;
       margin: 0 auto;
       padding: 32px 24px 80px 24px;
     }
 
-    /* GREETING */
-    .greeting {
-      margin-bottom: 32px;
-    }
+    .greeting { margin-bottom: 32px; }
+    .greeting h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .greeting p { font-size: 15px; color: #888; }
 
-    .greeting h1 {
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 6px;
-    }
-
-    .greeting p {
-      font-size: 15px;
-      color: #888;
-    }
-
-    /* LOG A PB CARD */
     .card {
       background: #111;
       border: 1px solid #1e1e1e;
@@ -113,11 +89,7 @@
       margin-bottom: 12px;
     }
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
 
     .field label {
       font-size: 12px;
@@ -127,8 +99,7 @@
       letter-spacing: 0.5px;
     }
 
-    .field select,
-    .field input {
+    .field select, .field input {
       padding: 12px 14px;
       border-radius: 8px;
       border: 1px solid #2a2a2a;
@@ -141,9 +112,7 @@
       width: 100%;
     }
 
-    .field select:focus,
-    .field input:focus { border-color: #ff7a3d; }
-
+    .field select:focus, .field input:focus { border-color: #ff7a3d; }
     .field select option { background: #161616; }
 
     .log-btn {
@@ -165,17 +134,10 @@
     .log-btn:active:not(:disabled) { transform: scale(0.98); }
     .log-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-    .form-message {
-      font-size: 13px;
-      margin-top: 10px;
-      min-height: 18px;
-      text-align: center;
-    }
-
+    .form-message { font-size: 13px; margin-top: 10px; min-height: 18px; text-align: center; }
     .form-message.success { color: #4ade80; }
     .form-message.error { color: #ef4444; }
 
-    /* PB LIST */
     .section-title {
       font-size: 13px;
       font-weight: 600;
@@ -185,11 +147,7 @@
       margin-bottom: 12px;
     }
 
-    .pb-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    .pb-list { display: flex; flex-direction: column; gap: 10px; }
 
     .pb-item {
       background: #111;
@@ -199,39 +157,19 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      cursor: pointer;
+      transition: border-color 0.15s;
     }
 
-    .pb-left {}
+    .pb-item:hover { border-color: #555; }
+    .pb-item.active { border-color: #ff7a3d; }
 
-    .pb-lift {
-      font-size: 13px;
-      font-weight: 600;
-      color: #ff7a3d;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 2px;
-    }
-
-    .pb-weight {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-    }
-
-    .pb-right {
-      text-align: right;
-    }
-
-    .pb-date {
-      font-size: 12px;
-      color: #666;
-    }
-
-    .pb-bw {
-      font-size: 12px;
-      color: #555;
-      margin-top: 2px;
-    }
+    .pb-lift { font-size: 13px; font-weight: 600; color: #ff7a3d; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+    .pb-weight { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+    .pb-right { text-align: right; }
+    .pb-date { font-size: 12px; color: #666; }
+    .pb-bw { font-size: 12px; color: #555; margin-top: 2px; }
+    .pb-tap-hint { font-size: 11px; color: #444; margin-top: 4px; }
 
     .empty-state {
       text-align: center;
@@ -243,16 +181,112 @@
       border-radius: 14px;
     }
 
-    .empty-state .empty-icon {
-      font-size: 32px;
-      margin-bottom: 12px;
+    .empty-state .empty-icon { font-size: 32px; margin-bottom: 12px; }
+    .loading { text-align: center; padding: 40px; color: #555; font-size: 14px; }
+
+    /* LEGACY CHART */
+    .legacy-chart { display: none; margin-bottom: 24px; }
+    .legacy-chart.visible { display: block; }
+
+    .chart-header { margin-bottom: 16px; }
+
+    .chart-header h2 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+      line-height: 1.2;
     }
 
-    .loading {
+    .chart-subtitle { font-size: 13px; color: #666; margin-bottom: 4px; }
+    .chart-lift-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: #ff7a3d; }
+
+    .ladder { display: flex; flex-direction: column; gap: 5px; margin-top: 14px; }
+
+    .ladder-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border-radius: 8px;
+      background: #0d0d0d;
+      border: 1px solid #1a1a1a;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ladder-item.is-user {
+      border-color: #ff7a3d;
+      background: #160d05;
+    }
+
+    .ladder-bar {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      background: rgba(255,122,61,0.07);
+      z-index: 0;
+      transition: width 0.8s ease;
+    }
+
+    .ladder-item.is-user .ladder-bar { background: rgba(255,122,61,0.13); }
+
+    .ladder-rank {
+      font-size: 11px;
+      font-weight: 700;
+      color: #444;
+      width: 20px;
       text-align: center;
-      padding: 40px;
-      color: #555;
+      flex-shrink: 0;
+      z-index: 1;
+    }
+
+    .ladder-item.is-user .ladder-rank { color: #ff7a3d; }
+
+    .ladder-info { flex: 1; z-index: 1; min-width: 0; }
+
+    .ladder-name {
       font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ladder-item.is-user .ladder-name { color: #ff7a3d; }
+
+    .ladder-category { font-size: 11px; color: #555; }
+
+    .ladder-numbers { text-align: right; z-index: 1; flex-shrink: 0; }
+
+    .ladder-ratio {
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .ladder-item.is-user .ladder-ratio { color: #ff7a3d; }
+
+    .ladder-kg { font-size: 11px; color: #555; }
+
+    .user-tag {
+      display: inline-block;
+      font-size: 9px;
+      background: #ff7a3d;
+      color: #0a0a0a;
+      font-weight: 800;
+      padding: 1px 5px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+
+    .gap-line {
+      text-align: center;
+      font-size: 11px;
+      color: #333;
+      padding: 4px 0;
+      letter-spacing: 1px;
     }
 
     @media (max-width: 480px) {
@@ -280,7 +314,6 @@
     <!-- LOG A PB -->
     <div class="card">
       <div class="card-title">Log a PB</div>
-
       <div class="form-row">
         <div class="field">
           <label for="lift-type">Lift</label>
@@ -296,7 +329,6 @@
           <input type="number" id="weight" placeholder="e.g. 100" min="1" max="999" step="0.5">
         </div>
       </div>
-
       <div class="form-row">
         <div class="field">
           <label for="bodyweight">Your bodyweight (kg)</label>
@@ -307,9 +339,21 @@
           <input type="date" id="lift-date">
         </div>
       </div>
-
       <button class="log-btn" id="log-btn">Log this PB</button>
       <div class="form-message" id="form-message"></div>
+    </div>
+
+    <!-- LEGACY CHART (appears after logging) -->
+    <div class="legacy-chart" id="legacy-chart">
+      <div class="card">
+        <div class="card-title">Legacy Chart</div>
+        <div class="chart-header">
+          <h2 id="chart-headline"></h2>
+          <div class="chart-subtitle" id="chart-subtitle"></div>
+          <div class="chart-lift-label" id="chart-lift-label"></div>
+        </div>
+        <div class="ladder" id="ladder"></div>
+      </div>
     </div>
 
     <!-- YOUR PBS -->
@@ -326,38 +370,128 @@
     const SUPABASE_KEY = 'sb_publishable_yqYCJitzPATD_Wmjt40oTA_dbDeNYe_';
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    const liftLabels = {
-      bench: 'Bench Press',
-      squat: 'Squat',
-      deadlift: 'Deadlift',
-      ohp: 'Overhead Press'
-    };
+    const liftLabels = { bench: 'Bench Press', squat: 'Squat', deadlift: 'Deadlift', ohp: 'Overhead Press' };
+    const liftColumns = { bench: 'bench_press_kg', squat: 'squat_kg', deadlift: 'deadlift_kg', ohp: 'overhead_press_kg' };
 
-    // Check auth
+    // Auth check
     const { data: { user } } = await supabase.auth.getUser();
-    if (!user) {
-      window.location.href = '/login.html';
-    }
+    if (!user) { window.location.href = '/login.html'; }
 
-    // Set nav email
     document.getElementById('nav-email').textContent = user.email;
 
-    // Set greeting
     const hour = new Date().getHours();
-    const greeting = hour < 12 ? 'Good morning.' : hour < 18 ? 'Good afternoon.' : 'Good evening.';
-    document.getElementById('greeting-text').textContent = greeting;
+    document.getElementById('greeting-text').textContent =
+      hour < 12 ? 'Good morning.' : hour < 18 ? 'Good afternoon.' : 'Good evening.';
 
-    // Set today's date as default
-    const today = new Date().toISOString().split('T')[0];
-    document.getElementById('lift-date').value = today;
+    document.getElementById('lift-date').value = new Date().toISOString().split('T')[0];
 
-    // Sign out
     document.getElementById('signout-btn').addEventListener('click', async () => {
       await supabase.auth.signOut();
       window.location.href = '/';
     });
 
-    // Load PBs
+    // Load famous lifters once upfront
+    const { data: famousLifters } = await supabase
+      .from('famous_lifters')
+      .select('*');
+
+    // ─── LEGACY CHART ───────────────────────────────────────────────
+    function buildLegacyChart(liftType, userWeightKg, userBodyweightKg) {
+      const chartEl = document.getElementById('legacy-chart');
+
+      if (!userBodyweightKg || !famousLifters || famousLifters.length === 0) {
+        chartEl.classList.remove('visible');
+        return;
+      }
+
+      const column = liftColumns[liftType];
+      const userRatio = userWeightKg / userBodyweightKg;
+
+      // Build list of famous lifters with data for this lift
+      const lifterList = famousLifters
+        .filter(l => l[column] != null && l.bodyweight_kg != null)
+        .map(l => ({
+          name: l.name,
+          category: l.category,
+          liftKg: l[column],
+          bwKg: l.bodyweight_kg,
+          ratio: l[column] / l.bodyweight_kg,
+          isUser: false
+        }));
+
+      if (lifterList.length === 0) {
+        chartEl.classList.remove('visible');
+        return;
+      }
+
+      // Add user to the mix
+      const allEntries = [
+        ...lifterList,
+        { name: 'You', category: null, liftKg: userWeightKg, bwKg: userBodyweightKg, ratio: userRatio, isUser: true }
+      ].sort((a, b) => b.ratio - a.ratio);
+
+      const userIndex = allEntries.findIndex(e => e.isUser);
+      const topEntry = allEntries[0];
+      const pctOfTop = ((userRatio / topEntry.ratio) * 100).toFixed(1);
+
+      // Update headline
+      document.getElementById('chart-headline').textContent =
+        `You're at ${pctOfTop}% of ${topEntry.name}`;
+      document.getElementById('chart-subtitle').textContent =
+        `Your ${liftLabels[liftType].toLowerCase()} ratio: ${userRatio.toFixed(2)}× bodyweight`;
+      document.getElementById('chart-lift-label').textContent =
+        `${liftLabels[liftType]} — pound for pound`;
+
+      // Show 3 above and 3 below the user (or as many as exist)
+      const showAbove = 3;
+      const showBelow = 3;
+      const startIdx = Math.max(0, userIndex - showAbove);
+      const endIdx = Math.min(allEntries.length - 1, userIndex + showBelow);
+      const visible = allEntries.slice(startIdx, endIdx + 1);
+      const maxRatio = allEntries[0].ratio;
+
+      let html = '';
+
+      if (startIdx > 0) {
+        html += `<div class="gap-line">· · · ${startIdx} above · · ·</div>`;
+      }
+
+      visible.forEach((entry, i) => {
+        const globalRank = startIdx + i + 1;
+        const barPct = ((entry.ratio / maxRatio) * 100).toFixed(1);
+
+        html += `
+          <div class="ladder-item ${entry.isUser ? 'is-user' : ''}">
+            <div class="ladder-bar" style="width:${barPct}%"></div>
+            <div class="ladder-rank">${globalRank}</div>
+            <div class="ladder-info">
+              <div class="ladder-name">
+                ${entry.name}
+                ${entry.isUser ? '<span class="user-tag">You</span>' : ''}
+              </div>
+              ${!entry.isUser && entry.category ? `<div class="ladder-category">${entry.category}</div>` : ''}
+            </div>
+            <div class="ladder-numbers">
+              <div class="ladder-ratio">${entry.ratio.toFixed(2)}×</div>
+              <div class="ladder-kg">${entry.liftKg}kg</div>
+            </div>
+          </div>
+        `;
+      });
+
+      const below = allEntries.length - 1 - endIdx;
+      if (below > 0) {
+        html += `<div class="gap-line">· · · ${below} below · · ·</div>`;
+      }
+
+      document.getElementById('ladder').innerHTML = html;
+      chartEl.classList.add('visible');
+
+      // Smooth scroll to chart
+      setTimeout(() => chartEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 150);
+    }
+
+    // ─── LOAD LIFTS ──────────────────────────────────────────────────
     async function loadLifts() {
       const { data: lifts, error } = await supabase
         .from('lifts')
@@ -372,13 +506,15 @@
           <div class="empty-state">
             <div class="empty-icon">🏋️</div>
             No PBs logged yet. Log your first one above.
-          </div>
-        `;
+          </div>`;
         return;
       }
 
-      pbList.innerHTML = lifts.map(lift => `
-        <div class="pb-item">
+      pbList.innerHTML = lifts.map((lift, idx) => `
+        <div class="pb-item" id="pb-${idx}"
+          data-lift-type="${lift.lift_type}"
+          data-weight="${lift.weight_kg}"
+          data-bw="${lift.bodyweight_at_lift_kg || 0}">
           <div class="pb-left">
             <div class="pb-lift">${liftLabels[lift.lift_type] || lift.lift_type}</div>
             <div class="pb-weight">${lift.weight_kg} kg</div>
@@ -386,14 +522,28 @@
           <div class="pb-right">
             <div class="pb-date">${new Date(lift.lift_date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</div>
             ${lift.bodyweight_at_lift_kg ? `<div class="pb-bw">BW: ${lift.bodyweight_at_lift_kg} kg</div>` : ''}
+            <div class="pb-tap-hint">Tap to compare →</div>
           </div>
         </div>
       `).join('');
+
+      // Add click handlers
+      document.querySelectorAll('.pb-item').forEach(item => {
+        item.addEventListener('click', () => {
+          document.querySelectorAll('.pb-item').forEach(el => el.classList.remove('active'));
+          item.classList.add('active');
+          buildLegacyChart(
+            item.dataset.liftType,
+            parseFloat(item.dataset.weight),
+            parseFloat(item.dataset.bw)
+          );
+        });
+      });
     }
 
     await loadLifts();
 
-    // Log a PB
+    // ─── LOG A PB ────────────────────────────────────────────────────
     document.getElementById('log-btn').addEventListener('click', async () => {
       const liftType = document.getElementById('lift-type').value;
       const weight = parseFloat(document.getElementById('weight').value);
@@ -402,7 +552,6 @@
       const logBtn = document.getElementById('log-btn');
       const formMessage = document.getElementById('form-message');
 
-      // Validation
       if (!weight || weight <= 0) {
         formMessage.textContent = 'Please enter a valid weight.';
         formMessage.className = 'form-message error';
@@ -436,12 +585,15 @@
         formMessage.textContent = `${liftLabels[liftType]} PB logged. Nice work.`;
         formMessage.className = 'form-message success';
 
-        // Clear weight field (keep lift type and date)
         document.getElementById('weight').value = '';
         document.getElementById('bodyweight').value = '';
 
-        // Reload the PB list
         await loadLifts();
+
+        // Auto-show comparison
+        if (bodyweight) {
+          buildLegacyChart(liftType, weight, bodyweight);
+        }
 
       } catch (err) {
         console.error(err);
